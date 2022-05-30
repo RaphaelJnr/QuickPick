@@ -29,7 +29,7 @@
 					<img src="images/img-01.png" alt="IMG">
 				</div>
 
-				<form class="login100-form validate-form" action="../MAIN-APP/index.php" method="POST">
+				<form class="login100-form validate-form" action="../backend/signup/logout.inc.php" method="POST">
 
 				<p class="login100-form-title" style="font-size:0.8rem; color:Gainsboro;text-transform: capitalize;">
 
@@ -37,6 +37,7 @@
 							session_start(); 
 							if(!isset($_SESSION['name']) && !isset($_SESSION['verify_status'])){
 								echo "COULDNT FIND SESSION";
+								header('location: ./login.php?error=990');
 							} else{
 								
 								$name =  $_SESSION['name'];
@@ -60,14 +61,12 @@
 					<div style="justify-content:center;">
 						<i class="fa fa-mobile-phone" style="font-size:10rem; color:skyblue"></i>
 					</div>
-				</form>
 
-				<form action="">
-					<div class="text-center p-t-136">
-						<a class="txt2" href="signup.php">
-							Create your Account
-							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-						</a>
+
+					<div class="container-login100-form-btn">
+					<button id="submit" name="submit" class="login100-form-btn">
+						LogOut
+					</button>
 					</div>
 				</form>
 

@@ -49,7 +49,7 @@
 									}else if($_GET['error']=="999"){
 										echo "Fatal Error";
 									}else if($_GET['error']=="990"){
-										echo "UNauthorized Entry";
+										echo "Unauthorized Entry";
 									}else if($_GET['error']=="1000"){
 									echo "<span class='text-center p-b-10 text-success font-weight-bold'>Password Change Successful</span>";
 								}

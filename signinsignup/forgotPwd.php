@@ -49,8 +49,8 @@
 										echo "Code contains illegal charactesr";
 									}else if($_GET['error']=="101"){
 										echo "A fatal error has occured. Restart App";
-									}else if($_GET['error']=="111"){
-										echo "Incorrect Code";
+									}else if($_GET['error']=="102"){
+										echo "No account found!";
 									}
 								}
 							?>

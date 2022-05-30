@@ -66,12 +66,27 @@ if(!isset($_POST['submit'])){
                      $run = mysqli_stmt_execute($insert);
 
                      if($run){
-                           // SENDING SMS FOR VERIFICATION
+
+                        $_SESSION['verification_status'] = true;
+
+                        mysqli_close($connect);
+                        // if the url has forgot attached, redirect rather to forgot password page instead of home
+                        if(isset($_SESSION['forgot'])){
+                           $value = $_SESSION['forgot'];
+
+                           
+
+                           if($value == false){
+                              header("location: ../../signinsignup/login.php?error=103");
+                           }else{
+                              unset($_SESSION['forgot']);
+                              header("location: ../../signinsignup/ChangePwd.php");
+                           }
+
+                        }else{
                            header("location: ../../signinsignup/homepage.php");
+                        }
 
-
-
-                           mysqli_close($connect);
                      }else{  
                         header("location:../../signinsignup/smsverification.php?error=10");
                      }
@@ -79,7 +94,9 @@ if(!isset($_POST['submit'])){
                 }
                }
 
-            header("location: ../../signinsignup/homepage.php?1011");
+               echo "UNKNOWN ERROR";
+
+            //header("location: ../../signinsignup/login.php?101");
          }
       }
    }

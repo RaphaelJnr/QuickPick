@@ -50,7 +50,9 @@
 										echo "Fatal Error";
 									}else if($_GET['error']=="990"){
 										echo "UNauthorized Entry";
-									}
+									}else if($_GET['error']=="1000"){
+									echo "<span class='text-center p-b-10 text-success font-weight-bold'>Password Change Successful</span>";
+								}
 								}
 							?>
 					 </div>
@@ -80,9 +82,7 @@
 					</div>
 
 					<div class="font-weight-bold text-center p-t-12 text-light">
-						<span class="txt1">
-							Forgot
-						</span>
+							<a class="txt1" href="./forgotPwd.php">Forgot Password</a>
 						<a class="txt2" href="#">
 							Username / Password?
 						</a>

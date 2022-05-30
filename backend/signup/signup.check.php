@@ -135,7 +135,6 @@
                     
                     $_SESSION['phone_number'] = $phone;
                     $_SESSION['name'] = $fullname;
-
                     unset($_SESSION['verification_status']);
 
                     require('./../SMS/sendsms.php');

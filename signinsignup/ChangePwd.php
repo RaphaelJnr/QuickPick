@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>QP Verification</title>
+	<title>QP Forgot Pwd</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -19,7 +19,6 @@
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
-	<script src="../assets/js/countdownFunc.js"></script>
 <!--===============================================================================================-->
 </head>
 <body>
@@ -30,9 +29,9 @@
 					<img src="images/img-01.png" alt="IMG">
 				</div>
 
-				<form class="login100-form validate-form" action="./../backend/signup/smsverifier.inc.php" method="POST">
+				<form class="login100-form validate-form" action="./../backend/signup/change.inc.php" method="POST">
 					<span class="login100-form-title">
-						One Step More. Verify your Phone Number
+						Change Password
 					</span>
 
 					
@@ -46,12 +45,12 @@
 								if(isset($_GET['error'])){
 									if($_GET['error']=="000"){
 										echo "Unauthorized Gateway";
-									}else if($_GET['error']=="10"){
-										echo "Code contains illegal charactesr";
-									}else if($_GET['error']=="101"){
-										echo "A fatal error has occured. Restart App";
+									}else if($_GET['error']=="11"){
+										echo "Passswords Do not match";
+									}else if($_GET['error']=="12"){
+										echo "Not Accepting Password Less than 6 characters";
 									}else if($_GET['error']=="111"){
-										echo "Incorrect Code";
+										echo "Illegal characters in password";
 									}
 								}
 							?>
@@ -60,45 +59,34 @@
 					
 					<!-- VERIFICATION CODE -->
 					<div class="wrap-input100 validate-input" data-validate = "">
-						<input class="input100" name="code" type="number" name="" placeholder="Enter 6-Digit Code">
+						<input class="input100" name="password" type="password" name="" placeholder="Enter New Password">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
-							<i class="fa fa-sort-numeric-desc" aria-hidden="true"></i>
+							<i class="fa fa-key" aria-hidden="true"></i>
+						</span>
+					</div>
+
+                    <div class="wrap-input100 validate-input" data-validate = "">
+						<input class="input100" name="cpassword" type="password" name="" placeholder="Confirm Password">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
 					</div>
 					
-					<div id="countdown" class="">
 							
 					</div>
 
 					<!-- VERIFICATION -->
 					<div class="container-login100-form-btn">
 					<button id="submit" name="submit" class="login100-form-btn">
-						VERIFY CODE
+						RECOVER
 					</button>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
-	
-	
-<script>
-      var expiry = <?php session_start(); if(!isset($_SESSION['verification_expiry'])){echo -1;}else{echo ($_SESSION['verification_expiry']);}  ?> * 1000; //get the time from the session
-      var now    = <?php echo time() ?> * 1000;
-      var cont   = 'countdown';
-
-      if(expiry==-1){
-         document.getElementById(cont).innerHTML = "<b style='color:red; margin-top:10px; margin-bottom:10px; margin-left:5px;font-size:0.8rem;'>Unauthorized Access!</b>"
-      }else{
-         if(now>expiry){
-			document.getElementById(cont).innerHTML = "<a style='color:white; margin-top:10px; margin-bottom:10px; margin-left:5px;font-size:0.8rem; text-decoration: underline blue 2px;' href='../backend/sms/sendsms.php?verification_page'>Request New Code</a>"
-         }else{
-            startCountdown(expiry,now,cont)
-         }
-      }
-
-</script>
 	
 <!--===============================================================================================-->	
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
